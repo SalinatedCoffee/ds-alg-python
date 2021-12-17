@@ -12,12 +12,12 @@ def queue_with_size_10():
 def test_push_pop(queue_with_size_10):
     queue_test = queue_with_size_10
     with pytest.raises(EmptyQueueException):
-        queue_test.pop()
+        queue_test.dequeue()
 
     for i in range(10):
-        queue_test.push(i)
+        queue_test.enqueue(i)
 
     with pytest.raises(QueueOverCapacityException):
-        queue_test.push(11)
+        queue_test.dequeue(11)
 
     assert queue_test.pop() == 0
