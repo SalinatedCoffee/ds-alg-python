@@ -1,5 +1,3 @@
-# TODO: impliment dynamic size adjustment (factor of 2 for size increase, factor of .5 for decrease)
-# size should be decreased when elements are 1/4 of current capacity
 from src.PyDSError import *
 
 class ArrayCircularQueue():
