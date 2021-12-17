@@ -12,6 +12,15 @@ class ArrayCircularQueue():
 
     def __len__(self):
         return self._size
+
+    def _migrate(self, new_size):
+        if new_size < self._size:
+            raise MigrateSizeException("new internal size is smaller than number of current elements")
+        temp = [None] * new_size
+        for i in range(new_size):
+            temp[i] = self._data[(self._front + i) % len(self._data)]
+        self._data = temp
+        self._front = 0
     
     def front(self):
         if not self._size:
