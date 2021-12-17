@@ -5,19 +5,20 @@ from src.PyDSError import *
 
 # could probably just do this inline but practice using fixtures
 @pytest.fixture
-def queue_with_size_10():
-    return ArrayCircularQueue(10)
+def default_queue():
+    return ArrayCircularQueue()
 
 
-def test_push_pop(queue_with_size_10):
-    queue_test = queue_with_size_10
+def test_enqueue_dequeue(default_queue):
     with pytest.raises(EmptyQueueException):
-        queue_test.dequeue()
+        default_queue.dequeue()
+
+    assert default_queue.front() == None
 
     for i in range(10):
-        queue_test.enqueue(i)
+        default_queue.enqueue(i)
 
     with pytest.raises(QueueOverCapacityException):
-        queue_test.dequeue(11)
+        default_queue.enqueue(11)
 
-    assert queue_test.pop() == 0
+    assert default_queue.dequeue() == 0
