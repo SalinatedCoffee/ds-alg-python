@@ -22,3 +22,18 @@ def test_basic_enqueue_dequeue(default_queue):
 def test_dequeue_from_empty(default_queue):
     with pytest.raises(EmptyQueueException):
         default_queue.dequeue()
+
+def test_internal_resize_up(default_queue):
+    for i in range(11):
+        default_queue.enqueue(i)
+
+    assert len(default_queue) == 11
+
+def test_internal_resize_down(default_queue):
+    for i in range(10):
+        default_queue.enqueue(i)
+
+    for i in range(9):
+        default_queue.dequeue()
+
+    assert default_queue.front() == 9
