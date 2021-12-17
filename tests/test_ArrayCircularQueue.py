@@ -8,17 +8,17 @@ from src.PyDSError import *
 def default_queue():
     return ArrayCircularQueue()
 
-
-def test_enqueue_dequeue(default_queue):
-    with pytest.raises(EmptyQueueException):
-        default_queue.dequeue()
-
+def test_initialization(default_queue):
     assert default_queue.front() == None
 
-    for i in range(10):
-        default_queue.enqueue(i)
+def test_basic_enqueue_dequeue(default_queue):
+    default_queue.enqueue(1)
+    default_queue.enqueue(1337)
+    assert default_queue.front() == 1
+    assert default_queue.dequeue() == 1
+    assert default_queue.front() == 1337
+    assert default_queue.dequeue() == 1337
 
-    with pytest.raises(QueueOverCapacityException):
-        default_queue.enqueue(11)
-
-    assert default_queue.dequeue() == 0
+def test_dequeue_from_empty(default_queue):
+    with pytest.raises(EmptyQueueException):
+        default_queue.dequeue()
