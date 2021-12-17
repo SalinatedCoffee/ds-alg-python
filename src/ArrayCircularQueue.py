@@ -29,7 +29,7 @@ class ArrayCircularQueue():
 
     def enqueue(self, item):
         if len(self) == len(self._data):
-            raise QueueOverCapacityException("unable to enqueue item to full queue")
+            self._migrate(len(self) * 2)
         self._data[(self._front + self._size) % len(self._data)] = item
         self._size += 1
     
@@ -39,5 +39,8 @@ class ArrayCircularQueue():
         temp = self._data[self._front]
         self._front = (self._front + 1) % len(self._data)
         self._size -= 1
+
+        if self._size < len(self._data) // 4:
+            self._migrate(len(self._data) // 2)
 
         return temp
