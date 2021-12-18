@@ -1,4 +1,3 @@
-from attr import dataclass
 from src.PyDSError import *
 
 class ArrayCircularDeque():
@@ -52,6 +51,9 @@ class ArrayCircularDeque():
             raise EmptyQueueException("unable to dequeue item from empty queue")
         temp = self._data[self._front]
         self._front = (self._front + 1) % len(self._data)
+        self._size -= 1
+        if self._size < len(self._data) // self.DEFAULT_SIZEDOWN_THRESHOLD:
+            self._migrate(len(self._data) // self.DEFAULT_SIZEDOWN_FACTOR)
         return temp
 
     def remove_end(self):
@@ -59,4 +61,6 @@ class ArrayCircularDeque():
             raise EmptyQueueException("unable to dequeue item form empty queue")
         temp = self._data[(self._front + len(self) - 1) % len(self._data)]
         self._size -= 1
+        if self._size < len(self._data) // self.DEFAULT_SIZEDOWN_THRESHOLD:
+            self._migrate(len(self._data) // self.DEFAULT_SIZEDOWN_FACTOR)
         return temp
