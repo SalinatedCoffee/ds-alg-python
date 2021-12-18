@@ -2,6 +2,9 @@ from src.PyDSError import *
 
 class ArrayCircularQueue():
     DEFAULT_INTERNAL_SIZE = 10
+    DEFAULT_SIZEUP_FACTOR = 2
+    DEFAULT_SIZEDOWN_FACTOR = 2
+    DEFAULT_SIZEDOWN_THRESHOLD = 4
 
     def __init__(self, size=DEFAULT_INTERNAL_SIZE):
         self._data = [None] * size
@@ -27,7 +30,7 @@ class ArrayCircularQueue():
 
     def enqueue(self, item):
         if len(self) == len(self._data):
-            self._migrate(len(self) * 2)
+            self._migrate(len(self) * self.DEFAULT_SIZEUP_FACTOR)
         self._data[(self._front + self._size) % len(self._data)] = item
         self._size += 1
 
@@ -38,7 +41,7 @@ class ArrayCircularQueue():
         self._front = (self._front + 1) % len(self._data)
         self._size -= 1
 
-        if self._size < len(self._data) // 4:
-            self._migrate(len(self._data) // 2)
+        if self._size < len(self._data) // self.DEFAULT_SIZEDOWN_THRESHOLD:
+            self._migrate(len(self._data) // self.DEFAULT_SIZEDOWN_FACTOR)
 
         return temp
