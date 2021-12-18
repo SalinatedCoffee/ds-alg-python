@@ -27,3 +27,15 @@ def test_add_remove_end(default_deque):
     assert default_deque.end() == 1
     default_deque.remove_end()
     assert default_deque.end() == None
+
+def test_internal_resize_up(default_deque):
+    for i in range(11):
+        default_deque.add_end(i)
+    assert default_deque.end() == 10
+
+def test_internal_resize_down(default_deque):
+    for i in range(10):
+        default_deque.add_end(i)
+    for i in range(9):
+        default_deque.remove_end()
+    assert default_deque.end() == 0
