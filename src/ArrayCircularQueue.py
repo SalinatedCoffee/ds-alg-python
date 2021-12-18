@@ -13,13 +13,13 @@ class ArrayCircularQueue():
 
     def _migrate(self, new_size):
         if new_size < self._size:
-            raise MigrateSizeException("new internal size is smaller than number of current elements")
+            raise MigrateSizeException("new size is smaller than number of current elements")
         temp = [None] * new_size
         for i in range(new_size):
             temp[i] = self._data[(self._front + i) % len(self._data)]
         self._data = temp
         self._front = 0
-    
+
     def front(self):
         if not self._size:
             return None
@@ -30,7 +30,7 @@ class ArrayCircularQueue():
             self._migrate(len(self) * 2)
         self._data[(self._front + self._size) % len(self._data)] = item
         self._size += 1
-    
+
     def dequeue(self):
         if not self._size:
             raise EmptyQueueException("unable to dequeue item from empty queue")
