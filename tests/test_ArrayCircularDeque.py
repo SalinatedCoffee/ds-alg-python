@@ -39,3 +39,15 @@ def test_internal_resize_down(default_deque):
     for i in range(9):
         default_deque.remove_end()
     assert default_deque.end() == 0
+
+def test_bidirectional_add_remove(default_deque):
+    default_deque.add_front(1)
+    default_deque.add_front(2)
+    assert default_deque.front() == 2
+    assert default_deque.end() == 1
+    default_deque.add_end(3)
+    assert default_deque.end() == 3
+    default_deque.remove_front()
+    default_deque.remove_end()
+    assert default_deque.front() == 1
+    assert default_deque.end() == 1
