@@ -1,3 +1,5 @@
+# TODO: docstrings
+# change sizedown threshold so it doesn't resize when smaller than default size
 from src.PyDSError import *
 
 class ArrayCircularDeque():
@@ -52,7 +54,8 @@ class ArrayCircularDeque():
         temp = self._data[self._front]
         self._front = (self._front + 1) % len(self._data)
         self._size -= 1
-        if self._size < len(self._data) // self.DEFAULT_SIZEDOWN_THRESHOLD:
+        if self._size < len(self._data) // self.DEFAULT_SIZEDOWN_THRESHOLD and \
+            self._size > self.DEFAULT_INTERNAL_SIZE:
             self._migrate(len(self._data) // self.DEFAULT_SIZEDOWN_FACTOR)
         return temp
 
@@ -61,6 +64,7 @@ class ArrayCircularDeque():
             raise EmptyQueueException("unable to dequeue item form empty queue")
         temp = self._data[(self._front + len(self) - 1) % len(self._data)]
         self._size -= 1
-        if self._size < len(self._data) // self.DEFAULT_SIZEDOWN_THRESHOLD:
+        if self._size < len(self._data) // self.DEFAULT_SIZEDOWN_THRESHOLD and \
+            self._size > self.DEFAULT_INTERNAL_SIZE:
             self._migrate(len(self._data) // self.DEFAULT_SIZEDOWN_FACTOR)
         return temp
