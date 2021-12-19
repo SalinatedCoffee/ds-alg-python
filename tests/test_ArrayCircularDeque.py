@@ -1,17 +1,16 @@
 import pytest
 from src.ArrayCircularDeque import ArrayCircularDeque
-from src.PyDSError import *
+from src.PyDSError import EmptyQueueException
 
-@pytest.fixture
-def default_deque():
+@pytest.fixture(name='default_deque')
+def fixture_default_deque():
     """pytest fixture for default deque."""
     return ArrayCircularDeque()
 
 def test_initialization(default_deque):
     """Test object initialization with default parameters."""
-    deque = default_deque
-    assert deque.front() is None
-    assert deque.end() is None
+    assert default_deque.front() is None
+    assert default_deque.end() is None
 
 def test_add_remove_front(default_deque):
     """Test enqueue / dequeue items from front."""

@@ -1,10 +1,10 @@
 import pytest
 from src.ArrayCircularQueue import ArrayCircularQueue
-from src.PyDSError import *
+from src.PyDSError import EmptyQueueException
 
 # could probably just do this inline but practice using fixtures
-@pytest.fixture
-def default_queue():
+@pytest.fixture(name='default_queue')
+def fixture_default_queue():
     """pytest fixture for default queue."""
     return ArrayCircularQueue()
 
