@@ -1,5 +1,6 @@
-class EmptyQueueException(Exception):
-    pass
+class QueueError():
+    class EmptyQueue(Exception):
+        pass
 
-class MigrateSizeException(Exception):
-    pass
+    class MigrateSize(Exception):
+        pass
