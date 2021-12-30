@@ -7,3 +7,8 @@ class QueueError():
 
     class MigrateSize(Exception):
         """Raised when internal resize target is smaller than number of elements in queue."""
+
+class StackError():
+    """Custom errors / exceptions for LinkedListStack."""
+    class Generic(Exception):
+        """Generic error for stack."""
