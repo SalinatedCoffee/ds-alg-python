@@ -1,6 +1,6 @@
 import pytest
 from src.ArrayCircularDeque import ArrayCircularDeque
-from src.PyDSError import EmptyQueueException
+from src.PyDSError import QueueError
 
 @pytest.fixture(name='default_deque')
 def fixture_default_deque():
@@ -24,10 +24,10 @@ def test_add_remove_front(default_deque):
 
 def test_dequeue_from_empty(default_deque):
     """Test dequeuing item from empty queue."""
-    with pytest.raises(EmptyQueueException):
+    with pytest.raises(QueueError.EmptyQueue):
         default_deque.remove_front()
 
-    with pytest.raises(EmptyQueueException):
+    with pytest.raises(QueueError.EmptyQueue):
         default_deque.remove_end()
 
 def test_add_remove_end(default_deque):

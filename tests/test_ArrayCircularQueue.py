@@ -1,6 +1,6 @@
 import pytest
 from src.ArrayCircularQueue import ArrayCircularQueue
-from src.PyDSError import EmptyQueueException
+from src.PyDSError import QueueError
 
 # could probably just do this inline but practice using fixtures
 @pytest.fixture(name='default_queue')
@@ -23,7 +23,7 @@ def test_basic_enqueue_dequeue(default_queue):
 
 def test_dequeue_from_empty(default_queue):
     """Test dequeuing item from empty queue."""
-    with pytest.raises(EmptyQueueException):
+    with pytest.raises(QueueError.EmptyQueue):
         default_queue.dequeue()
 
 def test_internal_resize_up(default_queue):

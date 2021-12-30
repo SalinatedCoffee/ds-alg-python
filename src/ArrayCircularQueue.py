@@ -1,4 +1,4 @@
-from src.PyDSError import *
+from src.PyDSError import QueueError
 
 class ArrayCircularQueue():
     """Simple dynamic size queue that internally uses a list."""
@@ -18,7 +18,7 @@ class ArrayCircularQueue():
     def _migrate(self, new_size):
         """Internal method that resizes the internal list."""
         if new_size < self._size:
-            raise MigrateSizeException("new size is smaller than number of current elements")
+            raise QueueError.MigrateSize("new size is smaller than number of current elements")
         temp = [None] * new_size
         for i in range(new_size):
             temp[i] = self._data[(self._front + i) % len(self._data)]
@@ -41,7 +41,7 @@ class ArrayCircularQueue():
     def dequeue(self):
         """Removes the item fron the front of the queue and returns it."""
         if not self._size:
-            raise EmptyQueueException("unable to dequeue item from empty queue")
+            raise QueueError.EmptyQueue("unable to dequeue item from empty queue")
         temp = self._data[self._front]
         self._front = (self._front + 1) % len(self._data)
         self._size -= 1
