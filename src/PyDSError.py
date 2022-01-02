@@ -10,5 +10,5 @@ class QueueError():
 
 class StackError():
     """Custom errors / exceptions for LinkedListStack."""
-    class Generic(Exception):
-        """Generic error for stack."""
+    class EmptyStack(Exception):
+        """Raised when attempting to pop item from already empty queue."""
