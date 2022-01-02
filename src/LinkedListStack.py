@@ -6,9 +6,9 @@ class LinkedListStack():
         """Private class used for internal linked list."""
         __slots__ = '_value', '_next'
 
-        def __init__(self, value=None, next = None):
+        def __init__(self, value=None, next_ptr = None):
             self._value = value
-            self._next = next
+            self._next = next_ptr
 
     def __init__(self):
         self._head = None
