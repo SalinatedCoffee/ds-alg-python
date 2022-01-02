@@ -20,7 +20,7 @@ def test_enqueue_dequeue(empty_queue):
     empty_queue.enqueue(5)
     empty_queue.enqueue(7)
     assert len(empty_queue) == 3
-    assert empty_queue.front() == 7
+    assert empty_queue.front() == 3
     empty_queue.dequeue()
     empty_queue.dequeue()
     assert len(empty_queue) == 1
