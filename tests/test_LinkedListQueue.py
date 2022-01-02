@@ -24,4 +24,4 @@ def test_enqueue_dequeue(empty_queue):
     empty_queue.dequeue()
     empty_queue.dequeue()
     assert len(empty_queue) == 1
-    assert empty_queue.dequeue() == 3
+    assert empty_queue.dequeue() == 7
