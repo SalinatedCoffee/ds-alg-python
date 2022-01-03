@@ -1,3 +1,4 @@
+#TODO: dequeue(): sanitize removed node with None for python GC
 from src.PyDSError import QueueError
 
 class CircularLLQueue():

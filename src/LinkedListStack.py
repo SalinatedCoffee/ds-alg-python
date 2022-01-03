@@ -1,3 +1,4 @@
+#TODO: pop(): sanitize removed node with None for python GC
 from src.PyDSError import StackError
 
 class LinkedListStack():
