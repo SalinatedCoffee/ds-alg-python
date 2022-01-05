@@ -31,7 +31,7 @@ class DoublyLinkedList:
         return temp
 
     def delete_node(self, node):
-        """Removes the node from the linked list and returns it."""
+        """Removes the node from the linked list and returns its value."""
         node._prev._next = node._next
         node._next._prev = node._prev
         value = node._value
