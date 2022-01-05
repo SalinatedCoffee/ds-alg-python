@@ -1,7 +1,7 @@
 #TODO: pop(): sanitize removed node with None for python GC
 from src.PyDSError import StackError
 
-class LinkedListStack():
+class LinkedListStack:
     """Simple stack that internally uses a linked list."""
     class _Node:
         """Private class used for internal linked list."""

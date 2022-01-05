@@ -1,7 +1,7 @@
 #TODO: dequeue(): sanitize removed node with None for python GC
 from src.PyDSError import QueueError
 
-class CircularLLQueue():
+class CircularLLQueue:
     """Simple queue that supports right-to-left rotation operations."""
     class _Node:
         """Internal class used for internal cirular linked list."""

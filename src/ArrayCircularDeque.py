@@ -1,6 +1,6 @@
 from src.PyDSError import QueueError
 
-class ArrayCircularDeque():
+class ArrayCircularDeque:
     """Simple dynamic size deque that internally uses a list."""
     DEFAULT_INTERNAL_SIZE = 10
     DEFAULT_SIZEUP_FACTOR = 2

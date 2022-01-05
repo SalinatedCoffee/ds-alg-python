@@ -1,7 +1,7 @@
 #TODO: dequeue(): sanitize removed node with None for python GC
 from src.PyDSError import QueueError
 
-class LinkedListQueue():
+class LinkedListQueue:
     """Simple queue that internally uses a linked list."""
     class _Node:
         """Private class used for internal linked list."""

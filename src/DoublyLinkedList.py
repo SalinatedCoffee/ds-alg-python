@@ -1,4 +1,4 @@
-class DoublyLinkedList():
+class DoublyLinkedList:
     """Simple doubly linked list class intended for internal use."""
     class _Node:
         """Internal node class."""
