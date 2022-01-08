@@ -1,3 +1,5 @@
+#TODO: make insert_between() private and refactor code / tests appropriately
+
 class DoublyLinkedList:
     """Simple doubly linked list class intended for internal use."""
     class _Node:
