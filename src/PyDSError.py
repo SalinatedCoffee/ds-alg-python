@@ -12,3 +12,8 @@ class StackError():
     """Custom errors / exceptions for stack objects."""
     class EmptyStack(Exception):
         """Raised when attempting to pop item from already empty queue."""
+
+class ListError():
+    """Custom errors / exceptions for list objects."""
+    class EmptyList(Exception):
+        """Raised when attempting to remove item from already empty list."""
