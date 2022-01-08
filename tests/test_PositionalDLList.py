@@ -11,7 +11,7 @@ def fixture_empty_positional():
 def test_initialization(empty_positional):
     """Test object initialization."""
     assert len(empty_positional) == 0
-    assert empty_positional.front() is None
+    assert empty_positional.first() is None
     assert empty_positional.last() is None
     with pytest.raises(TypeError):
         empty_positional.before(None)
@@ -25,12 +25,12 @@ def test_insert_remove(empty_positional):
     second = empty_positional.add_first(5)
     third = empty_positional.add_first(7)
     assert len(empty_positional) == 3
-    assert empty_positional.first() == first
-    assert empty_positional.last() == third
+    assert empty_positional.first() == third
+    assert empty_positional.last() == first
     assert empty_positional.delete(first) == 3
     with pytest.raises(ValueError):
         empty_positional.before(first)
-    assert empty_positional.first()._value == 5
+    assert empty_positional.first().element() == 7
     empty_positional.delete(second)
     empty_positional.delete(third)
     assert len(empty_positional) == 0
@@ -49,4 +49,4 @@ def test_iterator(empty_positional):
 
     assert len(empty_positional) == 7
     for pos, i in enumerate(empty_positional):
-        assert pos.element() == i
+        assert pos == i
