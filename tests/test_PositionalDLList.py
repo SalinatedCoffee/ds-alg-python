@@ -38,9 +38,9 @@ def test_insert_remove(empty_positional):
 def test_replace(empty_positional):
     """Test value replace method."""
     pos = empty_positional.add_first(101)
-    assert pos._node._value == 101
+    assert pos.element() == 101
     assert empty_positional.replace(pos, 42) == 101
-    assert pos._node._value == 42
+    assert pos.element() == 42
 
 def test_iterator(empty_positional):
     """Test __iter__ override."""
@@ -49,4 +49,4 @@ def test_iterator(empty_positional):
 
     assert len(empty_positional) == 7
     for pos, i in enumerate(empty_positional):
-        assert pos._node._value == i
+        assert pos.element() == i
