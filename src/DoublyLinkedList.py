@@ -1,5 +1,3 @@
-#TODO: make insert_between() private and refactor code / tests appropriately
-
 class DoublyLinkedList:
     """Simple doubly linked list class intended for internal use."""
     class _Node:
@@ -20,7 +18,7 @@ class DoublyLinkedList:
     def __len__(self):
         return self._size
 
-    def insert_between(self, item, prev_ptr, next_ptr):
+    def _insert_between(self, item, prev_ptr, next_ptr):
         """
         Given references to two adjacent nodes, insert new node between them with item as its value.
         Assumes the two nodes are adjacent, and are in correct order.
@@ -32,7 +30,7 @@ class DoublyLinkedList:
         self._size += 1
         return temp
 
-    def delete_node(self, node):
+    def _delete_node(self, node):
         """Removes the node from the linked list and returns its value."""
         node._prev._next = node._next
         node._next._prev = node._prev

@@ -66,33 +66,33 @@ class PositionalDLList(DoublyLinkedList):
             yield current.element()
             current = self.after(current)
 
-    def insert_between(self, item, prev_ptr, next_ptr):
+    def _insert_between(self, item, prev_ptr, next_ptr):
         """Inserts a new node between two nodes and returns a Position object for that node."""
-        node = super().insert_between(item, prev_ptr, next_ptr)
+        node = super()._insert_between(item, prev_ptr, next_ptr)
         return self._make_position(node)
 
     def add_first(self, e):
         """Inserts a node with value e at the front of the list and returns its Position object."""
-        return self.insert_between(e, self._header, self._header._next)
+        return self._insert_between(e, self._header, self._header._next)
 
     def add_last(self, e):
         """Inserts a node with value e at the end of the list and returns its Position object."""
-        return self.insert_between(e, self._trailer._prev, self._trailer)
+        return self._insert_between(e, self._trailer._prev, self._trailer)
     
     def add_before(self, p, e):
         """Inserts a node with value e before the node at position p and returns its Position object."""
         p = self._validate(p)
-        return self.insert_between(e, p._prev, p)
+        return self._insert_between(e, p._prev, p)
 
     def add_after(self, p, e):
         """Inserts a node with value e after the node at position p and returns its Position object."""
         p = self._validate(p)
-        return self.insert_between(e, p, p._next)
+        return self._insert_between(e, p, p._next)
     
     def delete(self, p):
         """Removes the node at position p and returns its value."""
         p = self._validate(p)
-        return self.delete_node(p)
+        return self._delete_node(p)
 
     def replace(self, p, e):
         """Replaces the value of the node at position p with e and returns the old value being replaced."""
