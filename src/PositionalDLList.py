@@ -1,5 +1,4 @@
 from src.DoublyLinkedList import DoublyLinkedList
-from src.PyDSError import ListError
 
 class PositionalDLList(DoublyLinkedList):
     """Simple position-referenced list ADT that uses a doubly linked list internally."""
