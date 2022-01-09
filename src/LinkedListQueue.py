@@ -1,4 +1,3 @@
-#TODO: dequeue(): sanitize removed node with None for python GC
 from src.PyDSError import QueueError
 
 class LinkedListQueue:
@@ -40,7 +39,9 @@ class LinkedListQueue:
         """Removes the node from the front of the queue and returns its value."""
         if not self._size:
             raise QueueError.EmptyQueue("unable to dequeue item from empty queue")
-        temp = self._head._value
+        temp = self._head
         self._head = self._head._next
+        value = temp._value
+        temp._next = temp._value = None
         self._size -= 1
-        return temp
+        return value
