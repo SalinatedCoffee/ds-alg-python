@@ -1,4 +1,3 @@
-#TODO: pop(): sanitize removed node with None for python GC
 from src.PyDSError import StackError
 
 class LinkedListStack:
@@ -24,8 +23,10 @@ class LinkedListStack:
             raise StackError.EmptyStack("unable to pop item from empty stack")
         temp = self._head
         self._head = temp._next
+        value = temp._value
+        temp._next = temp._value = None
         self._size -= 1
-        return temp._value
+        return value
 
     def push(self, item):
         """Adds a new node at the head with item as its value."""
