@@ -1,4 +1,3 @@
-#TODO: dequeue(): sanitize removed node with None for python GC
 from src.PyDSError import QueueError
 
 class CircularLLQueue:
@@ -40,8 +39,10 @@ class CircularLLQueue:
             raise QueueError.EmptyQueue("unable to dequeue item from empty queue")
         temp = self._tail._next
         self._tail._next = temp._next
+        value = temp._value
+        temp._next = temp._value = None
         self._size -= 1
-        return temp._value
+        return value
 
     def rotate(self):
         """Rotate the queue to the left by one item."""
