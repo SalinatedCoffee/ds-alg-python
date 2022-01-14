@@ -16,6 +16,7 @@ def test_add_nodes():
     assert len(tree) == 3
     assert tree.left(root).element() == 2
     assert tree.right(root).element() == 3
+    assert tree.num_children(root) == 2
 
 def generate_basic_tree():
     tree = LinkedBinaryTree()
