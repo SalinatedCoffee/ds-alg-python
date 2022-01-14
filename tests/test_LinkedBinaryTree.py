@@ -2,30 +2,34 @@ import pytest
 from src.LinkedBinaryTree import LinkedBinaryTree
 
 def test_initialization():
+    """Test default object instantiation."""
     empty_binary_tree = LinkedBinaryTree()
     assert len(empty_binary_tree) == 0
     assert empty_binary_tree.root() is None
 
 def test_add_nodes():
+    """Test the appending of nodes to a tree."""
     tree = LinkedBinaryTree()
     root = tree._add_root(0)
     assert root.element() == 0
     assert len(tree) == 1
-    tree._add_left(root, 2)
-    tree._add_right(root, 3)
+    tree._add_left(root, 1)
+    tree._add_right(root, 2)
     assert len(tree) == 3
-    assert tree.left(root).element() == 2
-    assert tree.right(root).element() == 3
+    assert tree.left(root).element() == 1
+    assert tree.right(root).element() == 2
     assert tree.num_children(root) == 2
 
 def generate_basic_tree():
+    """Helper function that generates a standard complete binary tree of size 3."""
     tree = LinkedBinaryTree()
     root = tree._add_root(0)
-    tree._add_left(root, 2)
-    tree._add_right(root, 3)
+    tree._add_left(root, 1)
+    tree._add_right(root, 2)
     return tree
 
 def test_remove_nodes():
+    """Test the removal of nodes from a tree."""
     tree = generate_basic_tree()
     assert len(tree) == 3
     with pytest.raises(ValueError):
@@ -37,6 +41,7 @@ def test_remove_nodes():
     assert len(tree) == 0
 
 def test_attach_subtrees():
+    """Test the appending of subtrees to a tree."""
     T0 = generate_basic_tree()
     T1 = generate_basic_tree()
     T2 = generate_basic_tree()

@@ -1,7 +1,7 @@
 from src.BinaryTree import BinaryTree
 
 class LinkedBinaryTree(BinaryTree):
-    """Simple binary tree data structure."""
+    """Simple binary tree data structure that is internally structured with linked nodes."""
     class Position:
         """Object that represents the position of a node."""
         def __init__(self, container, node):
