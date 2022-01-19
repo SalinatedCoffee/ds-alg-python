@@ -1,6 +1,6 @@
-from src.BinaryTree import BinaryTree
+from src.tree.binary_tree import binary_tree
 
-class LinkedBinaryTree(BinaryTree):
+class linkedbinary_tree(binary_tree):
     """Simple binary tree data structure that is internally structured with linked nodes."""
     class Position:
         """Object that represents the position of a node."""

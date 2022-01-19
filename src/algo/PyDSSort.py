@@ -1,7 +1,7 @@
 """Collection of various sorting algorithms for use with provided data structure implementations."""
-from src.PositionalDLList import PositionalDLList
+from src.list.positional_list import positional_list
 
-def insertion_sort(L:PositionalDLList) -> None:
+def insertion_sort(L:positional_list) -> None:
     """
     Basic insertion sort algorithm that sorts L in ascending order.
     Assumes that all items in L are comparable with each other.

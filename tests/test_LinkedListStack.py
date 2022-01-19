@@ -1,11 +1,11 @@
 import pytest
-from src.LinkedListStack import LinkedListStack
-from src.PyDSError import StackError
+from src.stack.linkedlist_stack import linkedlist_stack
+from src.exceptions.PyDSError import StackError
 
 @pytest.fixture(name='empty_stack')
 def fixture_empty_stack():
     """pytest fixture for empty stack."""
-    return LinkedListStack()
+    return linkedlist_stack()
 
 def test_initialization(empty_stack):
     """Test object initialization."""

@@ -1,7 +1,7 @@
-from src.PyDSError import QueueError
-from src.DoublyLinkedList import DoublyLinkedList
+from src.exceptions.PyDSError import QueueError
+from src.list.doublylinked_list import doublylinked_list
 
-class DoublyLinkedDeque(DoublyLinkedList):
+class doublylinked_deque(doublylinked_list):
     """Simple deque using a doubly linked list as internal storage."""
     def first(self):
         """Returns the value of the first item in the deque."""

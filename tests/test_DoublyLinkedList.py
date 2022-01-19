@@ -1,10 +1,10 @@
 import pytest
-from src.DoublyLinkedList import DoublyLinkedList
+from src.list.doublylinked_list import doublylinked_list
 
 @pytest.fixture(name='empty_dll')
 def fixture_empty_dll():
     """pytest fixture that instanciates a default doubly linked list."""
-    return DoublyLinkedList()
+    return doublylinked_list()
 
 def test_initialization(empty_dll):
     """Test object initialization."""

@@ -1,4 +1,4 @@
-class Tree:
+class tree:
     """Abstract base tree class."""
     class Position:
         """Nested position class that represents a position within the tree object."""

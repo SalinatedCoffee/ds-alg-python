@@ -1,11 +1,11 @@
 import pytest
-from src.CircularLLQueue import CircularLLQueue
-from src.PyDSError import QueueError
+from src.queue.circularlinked_queue import circularlinked_queue
+from src.exceptions.PyDSError import QueueError
 
 @pytest.fixture(name='empty_queue')
 def fixture_empty_queue():
     """pytest fixture for empty queue."""
-    return CircularLLQueue()
+    return circularlinked_queue()
 
 def test_initialization(empty_queue):
     """Test object initialization."""

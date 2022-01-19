@@ -1,6 +1,6 @@
-from src.DoublyLinkedList import DoublyLinkedList
+from src.list.doublylinked_list import doublylinked_list
 
-class PositionalDLList(DoublyLinkedList):
+class positional_list(doublylinked_list):
     """Simple position-referenced list ADT that uses a doubly linked list internally."""
     class Position:
         """Position object that is used to reference nodes in the list."""

@@ -1,12 +1,12 @@
 import pytest
-from src.ArrayCircularQueue import ArrayCircularQueue
-from src.PyDSError import QueueError
+from src.queue.arraycircular_queue import arraycircular_queue
+from src.exceptions.PyDSError import QueueError
 
 # could probably just do this inline but practice using fixtures
 @pytest.fixture(name='default_queue')
 def fixture_default_queue():
     """pytest fixture for default queue."""
-    return ArrayCircularQueue()
+    return arraycircular_queue()
 
 def test_initialization(default_queue):
     """Test object initialization with default parameters."""

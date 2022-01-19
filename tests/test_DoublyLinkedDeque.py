@@ -1,11 +1,11 @@
 import pytest
-from src.DoublyLinkedDeque import DoublyLinkedDeque
-from src.PyDSError import QueueError
+from src.queue.doublylinked_deque import doublylinked_deque
+from src.exceptions.PyDSError import QueueError
 
 @pytest.fixture(name='empty_dld')
 def fixture_empty_dld():
     """pytest fixture for an empty deque."""
-    return DoublyLinkedDeque()
+    return doublylinked_deque()
 
 def test_initialization(empty_dld):
     """Test object initialization."""

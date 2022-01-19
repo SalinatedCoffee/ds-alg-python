@@ -1,10 +1,10 @@
 import pytest
-from src.PositionalDLList import PositionalDLList
+from src.list.positional_list import positional_list
 
 @pytest.fixture(name='empty_positional')
 def fixture_empty_positional():
     """pytest fixture that generates a default, empty positional list."""
-    return PositionalDLList()
+    return positional_list()
 
 def test_initialization(empty_positional):
     """Test object initialization."""
@@ -13,7 +13,7 @@ def test_initialization(empty_positional):
     assert empty_positional.last() is None
     with pytest.raises(TypeError):
         empty_positional.before(None)
-    p = PositionalDLList.Position(None, None)
+    p = positional_list.Position(None, None)
     with pytest.raises(ValueError):
         empty_positional.before(p)
 

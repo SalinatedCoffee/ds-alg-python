@@ -1,15 +1,15 @@
 import pytest
-from src.LinkedBinaryTree import LinkedBinaryTree
+from src.tree.linkedbinary_tree import linkedbinary_tree
 
 def test_initialization():
     """Test default object instantiation."""
-    empty_binary_tree = LinkedBinaryTree()
+    empty_binary_tree = linkedbinary_tree()
     assert len(empty_binary_tree) == 0
     assert empty_binary_tree.root() is None
 
 def test_add_nodes():
     """Test the appending of nodes to a tree."""
-    tree = LinkedBinaryTree()
+    tree = linkedbinary_tree()
     root = tree._add_root(0)
     assert root.element() == 0
     assert len(tree) == 1
@@ -22,7 +22,7 @@ def test_add_nodes():
 
 def generate_basic_tree():
     """Helper function that generates a standard complete binary tree of size 3."""
-    tree = LinkedBinaryTree()
+    tree = linkedbinary_tree()
     root = tree._add_root(0)
     tree._add_left(root, 1)
     tree._add_right(root, 2)

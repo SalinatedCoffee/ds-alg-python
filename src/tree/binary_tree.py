@@ -1,6 +1,6 @@
-from src.Tree import Tree
+from src.tree.tree import tree
 
-class BinaryTree(Tree):
+class binary_tree(tree):
     """Abstract base binary tree class."""
     def left(self, p):
         """Should return the left child of node at position p."""

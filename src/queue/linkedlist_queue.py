@@ -1,6 +1,6 @@
-from src.PyDSError import QueueError
+from src.exceptions.PyDSError import QueueError
 
-class LinkedListQueue:
+class linkedlist_queue:
     """Simple queue that internally uses a linked list."""
     class _Node:
         """Private class used for internal linked list."""

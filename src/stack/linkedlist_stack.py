@@ -1,6 +1,6 @@
-from src.PyDSError import StackError
+from src.exceptions.PyDSError import StackError
 
-class LinkedListStack:
+class linkedlist_stack:
     """Simple stack that internally uses a linked list."""
     class _Node:
         """Private class used for internal linked list."""

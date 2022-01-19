@@ -1,10 +1,10 @@
 import pytest
-from src.PyDSSort import insertion_sort
-from src.PositionalDLList import PositionalDLList
+from src.algo.PyDSSort import insertion_sort
+from src.list.positional_list import positional_list
 
 def convert_list(items):
     """Convert Python lists to PositionalDLLists."""
-    subject = PositionalDLList()
+    subject = positional_list()
     for i in items:
         subject.add_last(i)
 

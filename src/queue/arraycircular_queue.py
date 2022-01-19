@@ -1,6 +1,6 @@
-from src.PyDSError import QueueError
+from src.exceptions.PyDSError import QueueError
 
-class ArrayCircularQueue:
+class arraycircular_queue:
     """Simple dynamic size queue that internally uses a list."""
     DEFAULT_INTERNAL_SIZE = 10
     DEFAULT_SIZEUP_FACTOR = 2

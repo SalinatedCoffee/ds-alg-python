@@ -1,11 +1,11 @@
 import pytest
-from src.ArrayCircularDeque import ArrayCircularDeque
-from src.PyDSError import QueueError
+from src.queue.arraycircular_deque import arraycircular_deque
+from src.exceptions.PyDSError import QueueError
 
 @pytest.fixture(name='default_deque')
 def fixture_default_deque():
     """pytest fixture for default deque."""
-    return ArrayCircularDeque()
+    return arraycircular_deque()
 
 def test_initialization(default_deque):
     """Test object initialization with default parameters."""

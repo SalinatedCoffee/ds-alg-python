@@ -1,11 +1,11 @@
 import pytest
-from src.LinkedListQueue import LinkedListQueue
-from src.PyDSError import QueueError
+from src.queue.linkedlist_queue import linkedlist_queue
+from src.exceptions.PyDSError import QueueError
 
 @pytest.fixture(name='empty_queue')
 def fixture_empty_queue():
     """pytest fixture for empty linked list queue."""
-    return LinkedListQueue()
+    return linkedlist_queue()
 
 def test_initialization(empty_queue):
     """Test object initialization."""

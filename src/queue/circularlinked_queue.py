@@ -1,6 +1,6 @@
-from src.PyDSError import QueueError
+from src.exceptions.PyDSError import QueueError
 
-class CircularLLQueue:
+class circularlinked_queue:
     """Simple queue that supports right-to-left rotation operations."""
     class _Node:
         """Internal class used for internal cirular linked list."""
