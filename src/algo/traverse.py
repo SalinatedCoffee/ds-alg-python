@@ -1,3 +1,4 @@
+# TODO: Implement iterative versions of tree traversal functions
 """Collection of various tree / graph traversal algorithms."""
 import src.tree.linkedbinary_tree as linkedbinary_tree
 
