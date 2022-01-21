@@ -1,5 +1,5 @@
 import pytest
-from src.algo.PyDSSort import insertion_sort
+from src.algo.sort import insertion_sort
 from src.list.positional_list import positional_list
 
 def convert_list(items):
