@@ -1,6 +1,3 @@
-from pickle import LIST
-import py
-from pyparsing import empty
 import pytest
 import src.queue.unsorted_pqueue as pqueue
 from src.exceptions.PyDSError import QueueError
