@@ -10,7 +10,7 @@ def fixture_empty_map():
 @pytest.fixture(name='sample_map')
 def fixture_sample_map():
     """pytest fixture that returns an unsorted_map that already contains items."""
-    items = [('A', 11), ('B', 3), ('C', 7), ('G', 5), ('G', 8)]
+    items = [('A', 11), ('B', 3), ('C', 7), ('G', 5)]
     ret = unsorted_map()
     for i in items:
         ret[i[0]] = i[1]
@@ -40,8 +40,7 @@ def test_item_retrieval(sample_map):
         sample_map['Z']
     assert sample_map['B'] == 3
     assert sample_map['C'] == 7
-    assert sample_map['G'] == 5 or \
-        sample_map['G'] == 8
+    assert sample_map['G'] == 5
 
 def test_remove_items(sample_map):
     """Tests the removal of items."""
@@ -56,7 +55,6 @@ def test_remove_items(sample_map):
     del sample_map['C']
     del sample_map['G']
     assert len(sample_map) == init_size - 4
-    assert sample_map['G']
 
 def test_mutation_items(sample_map):
     """Tests the mutation of items."""
@@ -66,7 +64,7 @@ def test_mutation_items(sample_map):
 def test_iterator(sample_map):
     """Tests the behavior of the overriden iterator method."""
     count = 0
-    items = ['A', 'B', 'C', 'G', 'G']
+    items = ['A', 'B', 'C', 'G']
     for idx, key in enumerate(sample_map):
         assert key == items[idx]
         count += 1
