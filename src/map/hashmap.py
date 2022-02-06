@@ -1,8 +1,8 @@
 from random import randrange
 from src.map.map import map
 
-LOAD_FACTOR_THRESHOLD = 0.5 # Resize the table array when this load factor is reached
-RESIZE_FACTOR = 2   # Resize the table array by this constant
+_LOAD_FACTOR_THRESHOLD = 0.5 # Resize the table array when this load factor is reached
+_RESIZE_FACTOR = 2   # Resize the table array by this constant
 
 class hashmap(map):
     """Custom abstract base class for hashmap-like data structures."""
@@ -35,8 +35,8 @@ class hashmap(map):
     def __setitem__(self, k, v):
         j = self._hash_function(k)
         self._bucket_setitem(j, k, v)
-        if self._n > int(len(self._table) * LOAD_FACTOR_THRESHOLD):
-            self._resize(RESIZE_FACTOR * len(self._table) - 1)
+        if self._n > int(len(self._table) * _LOAD_FACTOR_THRESHOLD):
+            self._resize(_RESIZE_FACTOR * len(self._table) - 1)
 
     def __delitem__(self, k):
         j = self._hash_function(k)
