@@ -105,10 +105,10 @@ def test_iter_range(sample_map):
     """Tests the behavior of sorted_map.find_range()."""
     keys = [1, 3, 4, 5, 7]
     for k, n in zip(keys, sample_map.find_range(None, None)):
-        assert k == n
+        assert k == n[0]
     for k, n in zip(keys[:3], sample_map.find_range(None, 5)):
-        assert k == n
+        assert k == n[0]
     for k, n in zip(keys[2:], sample_map.find_range(4, None)):
-        assert k == n
+        assert k == n[0]
     for k, n in zip(keys[1:4], sample_map.find_range(3, 7)):
-        assert k == n
+        assert k == n[0]
