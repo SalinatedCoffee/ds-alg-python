@@ -16,10 +16,11 @@ class sorted_map(map):
         pass
 
     def __init__(self):
-        pass
+        # table will be sorted in ascending order
+        self._table = []
 
     def __len__(self):
-        pass
+        return len(self._table)
 
     def __getitem__(self, k):
         pass
@@ -32,11 +33,13 @@ class sorted_map(map):
 
     def __iter__(self):
         """Iterate over all keys in the map."""
-        pass
+        for i in self._table:
+            yield i._key
 
     def __reversed__(self):
         """Iterate over all keys in the map, in reverse order."""
-        pass
+        for i in reversed(self._table):
+            yield i._key
 
     # access methods return None if no result was found
 
