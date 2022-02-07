@@ -6,7 +6,7 @@ class linear_hashmap(hashmap):
 
     def _is_available(self, j):
         """Returns True if self._table[j] is available."""
-        pass
+        return not self._table[j] or self._table[j] is self._AVAIL
 
     def _find_slot(self, j, k):
         """
@@ -15,16 +15,41 @@ class linear_hashmap(hashmap):
         If found == False, index will be the first available location for bucket j.
         Conversely, index will be the location of key k in the table.
         """
-        pass
+        available = None
+        while True:
+            if self._is_available(j):
+                if not available:
+                    available = j
+                # None means end of cluster, so no match found
+                if not self._table[j]:
+                    return (False, available)
+            elif self._table[j]._key == k:
+                return (True, j)
+            # assume hashmap._resize is working correctly, no sanity check
+            j = (j + 1) % len(self._table)
 
     def _bucket_getitem(self, j, k):
-        pass
+        found, idx = self._find_slot(j, k)
+        if not found:
+            raise KeyError('Key error: ' + repr(k))
+        return self._table[idx]._value
 
     def _bucket_setitem(self, j, k, v):
-        pass
+        found, idx = self._find_slot(j, k)
+        if not found:
+            self._table[idx] = self._Item(k, v)
+            self._n += 1
+        else:
+            self._table[idx]._value = v
 
     def _bucket_delitem(self, j, k):
-        pass
+        found, idx = self._find_slot(j, k)
+        if not found:
+            raise KeyError('Key error: ' + repr(k))
+        self._table[idx] = self._AVAIL
 
     def __iter__(self):
-        pass
+        """Iterates over all keys in the hash table."""
+        for i in self._table:
+            if isinstance(i, self._Item):
+                yield i._key
