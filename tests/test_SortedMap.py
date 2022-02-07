@@ -1,14 +1,19 @@
+import pytest
 from src.map.sorted_map import sorted_map
 
-def test_initialization():
+@pytest.fixture(name='empty_map')
+def fixture_empty_map():
+    return sorted_map()
+
+def test_initialization(empty_map):
     """Tests object instantiation."""
-    assert False
+    assert len(empty_map) == 0
 
 def test_add_items():
     """Tests the addition of key-value pairs."""
     assert False
 
-def test_mutate_items():
+def test_access_items():
     """Tests the modification of a value given its key."""
     assert False
 
