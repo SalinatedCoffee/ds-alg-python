@@ -13,7 +13,15 @@ class sorted_map(map):
             returns index of the first item with larger key than k.
         If none of the keys in the range are larger than k, returns h + 1.
         """
-        pass
+        # if range is malformed, return high + 1
+        if l > h:
+            return h + 1
+        m = (l + h) // 2
+        if self._table[m]._key == k:
+            return m
+        elif self._table[m]._key < k:
+            return self._find_index(k, m+1, h)
+        return self._find_index(k, l, m-1)
 
     def __init__(self):
         # table will be sorted in ascending order
@@ -23,13 +31,26 @@ class sorted_map(map):
         return len(self._table)
 
     def __getitem__(self, k):
-        pass
+        # if table is empty, self._find_index(k, 0, -1) -> 0
+        i = self._find_index(k, 0, len(self._table)-1)
+        if len(self._table) == i or self._table[i]._key != k:
+            raise KeyError('Key error: ' + repr(k))
+        return self._table[i]._value
 
     def __setitem__(self, k, v):
-        pass
+        i = self._find_index(k, 0, len(self._table)-1)
+        if len(self._table) == i:
+            self._table.append(self._Item(k, v))
+        elif self._table[i]._key == k:
+            self._table[i]._value = v
+        else:
+            self._table.insert(i, self._Item(k, v))
 
     def __delitem__(self, k):
-        pass
+        i = self._find_index(k, 0, len(self._table)-1)
+        if len(self._table) == i or self._table[i]._key != k:
+            raise KeyError('Key error: ' + repr(k))
+        self._table.pop(i)
 
     def __iter__(self):
         """Iterate over all keys in the map."""
@@ -45,11 +66,17 @@ class sorted_map(map):
 
     def find_min(self):
         """Returns the key-value pair with the smallest key."""
-        pass
+        if len(self._table) == 0:
+            return None
+        else:
+            return (self._table[0]._key, self._table[0]._value)
 
     def find_max(self):
         """Returns the key-value pair with the largest key."""
-        pass
+        if len(self._table) == 0:
+            return None
+        else:
+            return (self._table[-1]._key, self._table[-1]._value)
 
     def find_ge(self, k):
         """Returns the key-value pair with key larger than or equal to k."""
