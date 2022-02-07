@@ -80,7 +80,10 @@ class sorted_map(map):
 
     def find_ge(self, k):
         """Returns the key-value pair with key larger than or equal to k."""
-        pass
+        i = self._find_index(k, 0, len(self._table)-1)
+        if len(self._table) == i:
+            return None
+        return (self._table[i]._key, self._table[i]._value)
 
     def find_lt(self, k):
         """Returns the key-value pair with key smaller than k."""
@@ -88,7 +91,13 @@ class sorted_map(map):
 
     def find_gt(self, k):
         """Returns the key-value pair with key greater than k."""
-        pass
+        i = self._find_index(k, 0, len(self._table)-1)
+        if i < len(self._table):
+            if self._table[i]._key == k:
+                i += 1
+            if i < len(self._table):
+                return (self._table[i]._key, self._table[i]._value)
+        return None
 
     def find_le(self, k):
         """Returns the key-value pair with key smaller than or equal to k."""
