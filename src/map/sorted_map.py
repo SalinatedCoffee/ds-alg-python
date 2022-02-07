@@ -116,8 +116,19 @@ class sorted_map(map):
 
     def find_range(self, l, h):
         """
-        Generator that iterates through all keys in range [l, h).
+        Generator that iterates through all key-value pairs where l <= key < h.
         If None is passed as a parameter for l, the iteration begins from the start of the table.
         (and vice versa for h)
         """
-        pass
+        # TODO: can probably be implemented with only one call of self._find_index
+        if l is None:
+            l_idx = 0
+        else:
+            l_idx = self._find_index(l, 0, len(self._table)-1)
+        if h is None:
+            h_idx = len(self._table)-1
+        else:
+            h_idx = self._find_index(h, 0, len(self._table)-1)
+
+        for i in self._table[l_idx:h_idx]:
+            yield (i._key, i._value)
