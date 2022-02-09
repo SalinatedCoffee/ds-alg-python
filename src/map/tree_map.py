@@ -5,11 +5,11 @@ class tree_map(linkedbinary_tree, map):
     class Position(linkedbinary_tree.Position):
         def key(self):
             """Returns the key of the key-value pair referenced by the Position object."""
-            pass
+            self.element().key()
 
         def value(self):
             """Returns the value of the key-value pair referenced by the Position object."""
-            pass
+            self.element().value()
 
     # private utility methods
 
@@ -18,15 +18,27 @@ class tree_map(linkedbinary_tree, map):
         Searches the subtree rooted at p for key k and returns a Position of it if found.
         Returns the last touched key if search was unsuccessful.
         """
-        pass
+        if p.key() == k:
+            return p
+        elif p.key() > k and p.left() is not None:
+            return self._subtree_search(p.left(), k)
+        elif p.key() < k and p.right() is not None:
+            return self._subtree_search(p.right(), k)
+        return p
 
     def _subtree_first_position(self, p):
         """Returns a Position for the first item of the subtree rooted at p."""
-        pass
+        current = p
+        while current.left():
+            current = current.left()
+        return current
 
     def _subtree_last_position(self, p):
         """Returns a Position for the last item of the subtree rooted at p."""
-        pass
+        current = p
+        while current.right():
+            current = current.right()
+        return current
 
     # public methods; returns None if search was unsuccessful
 
