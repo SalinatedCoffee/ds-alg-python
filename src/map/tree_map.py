@@ -1,15 +1,15 @@
 from src.tree.linkedbinary_tree import linkedbinary_tree
 from src.map.map import map
 
-class tree_map(linkedbinary_tree, map):
+class tree_map(linkedbinary_tree, map): # multiple inheritance, but map only implements _Item
     class Position(linkedbinary_tree.Position):
         def key(self):
             """Returns the key of the key-value pair referenced by the Position object."""
-            self.element().key()
+            return self.element()._key
 
         def value(self):
             """Returns the value of the key-value pair referenced by the Position object."""
-            self.element().value()
+            return self.element()._value
 
     # private utility methods
 
@@ -20,47 +20,51 @@ class tree_map(linkedbinary_tree, map):
         """
         if p.key() == k:
             return p
-        elif p.key() > k and p.left() is not None:
-            return self._subtree_search(p.left(), k)
-        elif p.key() < k and p.right() is not None:
-            return self._subtree_search(p.right(), k)
+        elif p.key() > k and self.left(p) is not None:
+            return self._subtree_search(self.left(p), k)
+        elif p.key() < k and self.right(p) is not None:
+            return self._subtree_search(self.right(p), k)
         return p
 
     def _subtree_first_position(self, p):
         """Returns a Position for the first item of the subtree rooted at p."""
         current = p
-        while current.left():
-            current = current.left()
+        while self.left(current):
+            current = self.left(current)
         return current
 
     def _subtree_last_position(self, p):
         """Returns a Position for the last item of the subtree rooted at p."""
         current = p
-        while current.right():
-            current = current.right()
+        while self.right(current):
+            current = self.right(current)
         return current
 
     # public methods; returns None if search was unsuccessful
 
     def first(self):
         """Returns a Position for the first item in the tree."""
-        pass
+        return self._subtree_first_position(self.root()) if len(self) > 0 else None
 
     def last(self):
         """Returns a Position for the last item in the tree."""
-        pass
+        return self._subtree_last_position(self.root()) if len(self) > 0 else None
 
     def before(self, p):
         """Returns a Position for the item before the one at Position p."""
-        pass
+        return self._subtree_last_position(self.left(p)) if self.left(p) else None
 
     def after(self, p):
         """Returns a Position for the item after the one at Position p."""
-        pass
+        return self._subtree_first_position(self.right(p)) if self.right(p) else None
 
     def find_position(self, k):
         """Returns a Position for the item with key k."""
-        pass
+        if len(self) > 0:
+            res = self._subtree_search(self.root(), k)
+            if res.key() == k:
+                return res
+        return None
 
     def find_min(self):
         """Returns the key-value pair with smallest key."""
@@ -92,13 +96,27 @@ class tree_map(linkedbinary_tree, map):
     # magic method overrides
 
     def __getitem__(self, k):
-        pass
+        p = self._subtree_search(self.root(), k) if self.root() is not None else None
+        if p is None or p.key() != k:
+            raise KeyError('Key error: ' + repr(k))
+        return p.value()
 
     def __setitem__(self, k, v):
-        pass
+        p = self._subtree_search(self.root(), k) if self.root() is not None else None
+        if p is None:
+            self._add_root(self._Item(k, v))
+        elif p.key() != k:
+            if k < p.key():
+                self._add_left(p, self._Item(k, v))
+            else:
+                self._add_right(p, self._Item(k, v))
+        else:
+            p.element()._value = v
 
-    def __delitem__(self, v):
-        pass
+    def __delitem__(self, k):
+        p = self._subtree_search(self.root(), k) if self.root() is not None else None
+        if p is None or p.key() != k:
+            raise KeyError('Key error: ' + repr(k))
 
     def __iter__(self):
         pass
