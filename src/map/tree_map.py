@@ -80,6 +80,7 @@ class tree_map(linkedbinary_tree, map): # multiple inheritance, but map only imp
         """Returns a Position for the item with key k."""
         if len(self) > 0:
             res = self._subtree_search(self.root(), k)
+            self._rebalance_access(res)
             if res.key() == k:
                 return res
         return None
@@ -136,37 +137,55 @@ class tree_map(linkedbinary_tree, map): # multiple inheritance, but map only imp
             r = self._subtree_last_position(self.left(p))
             self._replace(p, r.element())
             p = r
+        parent = self.parent(p)
         self._delete(p)
+        self._rebalance_delete(parent)
 
     # magic method overrides
 
     def __getitem__(self, k):
         p = self._subtree_search(self.root(), k) if self.root() is not None else None
-        if p is None or p.key() != k:
+        if p is None:       # tree empty
+            raise KeyError('Key error: ' + repr(k))
+        elif p.key() != k:  # no hit on search
+            self._rebalance_access(p)
             raise KeyError('Key error: ' + repr(k))
         return p.value()
 
     def __setitem__(self, k, v):
         p = self._subtree_search(self.root(), k) if self.root() is not None else None
         if p is None:
-            self._add_root(self._Item(k, v))
+            p = self._add_root(self._Item(k, v))
         elif p.key() != k:
             if k < p.key():
-                self._add_left(p, self._Item(k, v))
+                p = self._add_left(p, self._Item(k, v))
             else:
-                self._add_right(p, self._Item(k, v))
+                p = self._add_right(p, self._Item(k, v))
         else:
             p.element()._value = v
+            self._rebalance_access(p)
+            return
+        self._rebalance_insert(p)
 
     def __delitem__(self, k):
         p = self._subtree_search(self.root(), k) if self.root() is not None else None
-        if p is None or p.key() != k:
+        if p is None:       # tree empty
             raise KeyError('Key error: ' + repr(k))
-        else:
-            self.delete(p)
+        elif p.key() != k:  # no hit on search
+            self._rebalance_access(p)
+            raise KeyError('Key error: ' + repr(k))
+        self.delete(p)
 
     def __iter__(self):
         current = self.first()
         while current is not None:
             yield current.key()
             current = self.after(current)
+
+    # rebalance hooks for balanced tree subclasses
+
+    def _rebalance_access(self, p): pass
+
+    def _rebalance_insert(self, p): pass
+
+    def _rebalance_delete(self, p): pass
