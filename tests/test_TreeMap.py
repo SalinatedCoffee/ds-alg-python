@@ -110,7 +110,7 @@ def test_relative_search(sample_map, empty_map):
     assert empty_map.find_le(1) is None
     assert sample_map.find_ge(10) is None
     assert sample_map.find_le(1) is None
-    assert sample_map.root().left() is None
+    assert sample_map.left(sample_map.root()) is None
 
 def test_iterators(sample_map):
     """Tests the generator methods."""
