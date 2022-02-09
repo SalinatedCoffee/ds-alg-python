@@ -30,7 +30,6 @@ def test_internal_resize_up(default_queue):
     """Test internal resize when queue is full."""
     for i in range(11):
         default_queue.enqueue(i)
-
     assert len(default_queue) == 11
 
 def test_internal_resize_down(default_queue):
@@ -40,5 +39,4 @@ def test_internal_resize_down(default_queue):
 
     for i in range(9):
         default_queue.dequeue()
-
     assert default_queue.front() == 9

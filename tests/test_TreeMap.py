@@ -38,7 +38,6 @@ def test_access_items(sample_map):
     assert sample_map.find_position(1).value() == 'One'
     assert sample_map.find_position(3).value() == 'Three'
     assert sample_map.find_position(7).value() == 'Seven'
-
     # methods inherited from linkedbinary_tree
     root = sample_map.root()
     assert root is not None
@@ -92,7 +91,6 @@ def test_relative_search(sample_map, empty_map):
     assert sample_map.find_ge(7) ==  (7, 'Seven')
     assert sample_map.find_le(2) == (1, 'One')
     assert sample_map.find_le(1) == (1, 'One')
-
     # operations on tree with some items removed
     del sample_map[1]
     del sample_map[7]
@@ -100,7 +98,6 @@ def test_relative_search(sample_map, empty_map):
     assert sample_map.last().key() == 5
     assert sample_map.find_min() == (3, 'Three')
     assert sample_map.find_max() == (5, 'Five')
-
     # operations that should return None
     assert empty_map.first() is None
     assert empty_map.last() is None

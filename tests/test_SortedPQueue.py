@@ -11,10 +11,8 @@ def fixture_empty_pqueue():
 def test_initialization(empty_pqueue):
     """Test object initialization."""
     assert len(empty_pqueue) == 0
-
     with pytest.raises(QueueError.EmptyQueue):
         empty_pqueue.min()
-
     with pytest.raises(QueueError.EmptyQueue):
         empty_pqueue.remove_min()
 

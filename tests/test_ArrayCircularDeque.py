@@ -39,6 +39,7 @@ def test_add_remove_end(default_deque):
     assert default_deque.end() == 1
     default_deque.remove_end()
     assert default_deque.end() is None
+
 def test_internal_resize_up(default_deque):
     """Test internal resize when queue is full."""
     for i in range(11):

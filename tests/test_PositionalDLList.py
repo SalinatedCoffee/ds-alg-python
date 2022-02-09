@@ -44,7 +44,6 @@ def test_iterator(empty_positional):
     """Test __iter__ override."""
     for i in range(7):
         empty_positional.add_last(i)
-
     assert len(empty_positional) == 7
     for pos, i in enumerate(empty_positional):
         assert pos == i
