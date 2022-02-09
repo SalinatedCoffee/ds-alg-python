@@ -54,15 +54,19 @@ class tree_map(linkedbinary_tree, map): # multiple inheritance, but map only imp
         x = p._node
         y = p._parent
         z = y._parent
-        if z is None:
+        if z is None:       # parent is root, configure x as new root
             self._root = x
             x._parent = None
-        else:
+        else:               # else, attach x to z in lieu of y
             self._relink(z, x, y == z._left)
         if x == y._left:
+            # x was left child of y, attach right subtree of x as left child of y
+            # and attach y as right subtree of x
             self._relink(y, x._right, True)
             self._relink(x, y, False)
         else:
+            # else, attach left subtree of x as right child of y
+            # and attach y as left subtree of x
             self._relink(y, x._left, False)
             self._relink(x, y, True)
 
@@ -70,6 +74,7 @@ class tree_map(linkedbinary_tree, map): # multiple inheritance, but map only imp
         """Perform trinode restructure of Position x with ancestors."""
         y = self.parent(x)
         z = self.parent(y)
+        # check if nodes are in a single-rotation configuration (connected to same sides)
         if (x == self.right(y)) == (y == self.right(z)):
             self._rotate(y)
             return y
