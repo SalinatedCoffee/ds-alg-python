@@ -53,7 +53,6 @@ class linkedbinary_tree(binary_tree):
         self._size = 1
         return self._make_position(self._root)
 
-
     def _add_left(self, p, e):
         """
         Creates a node with value e, sets it as the left child of the node at position p,

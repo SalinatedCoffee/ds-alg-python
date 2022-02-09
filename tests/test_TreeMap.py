@@ -35,9 +35,9 @@ def test_access_items(sample_map):
     # methods defined in tree_map
     assert isinstance(sample_map.find_position(1), tree_map.Position)
     assert sample_map.find_position(2) is None
-    assert sample_map.find_position(1).value == 'One'
-    assert sample_map.find_position(3).value == 'Three'
-    assert sample_map.find_position(7).value == 'Seven'
+    assert sample_map.find_position(1).value() == 'One'
+    assert sample_map.find_position(3).value() == 'Three'
+    assert sample_map.find_position(7).value() == 'Seven'
 
     # methods inherited from linkedbinary_tree
     root = sample_map.root()
@@ -129,7 +129,7 @@ def test_iterators(sample_map):
 def test_misc(sample_map):
     """Tests miscellaneous inherited methods."""
     root = sample_map.root()
-    assert sample_map.parent(root.left()) is root
-    assert sample_map.parent(root.right()) is root
+    assert sample_map.parent(sample_map.left(root)) is root
+    assert sample_map.parent(sample_map.right(root)) is root
     assert sample_map.num_children(root) == 2
-    assert sample_map.num_children(root.left()) == 0
+    assert sample_map.num_children(sample_map.left(root)) == 0
