@@ -153,4 +153,7 @@ class tree_map(linkedbinary_tree, map): # multiple inheritance, but map only imp
             self.delete(p)
 
     def __iter__(self):
-        pass
+        current = self.first()
+        while current is not None:
+            yield current.key()
+            current = self.after(current)
