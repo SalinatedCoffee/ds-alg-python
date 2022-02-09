@@ -86,11 +86,13 @@ class tree_map(linkedbinary_tree, map): # multiple inheritance, but map only imp
 
     def find_min(self):
         """Returns the key-value pair with smallest key."""
-        pass
+        res = self.first()
+        return (res.key(), res.value()) if res is not None else None
 
     def find_max(self):
         """Returns the key-value pair with largest key."""
-        pass
+        res = self.last()
+        return (res.key(), res.value()) if res is not None else None
 
     def find_ge(self, k):
         """Returns the key-value pair with key greater than or equal to k."""
@@ -110,6 +112,7 @@ class tree_map(linkedbinary_tree, map): # multiple inheritance, but map only imp
     def delete(self, p):
         """Deletes the item at Position p and updates the tree accordingly."""
         self._validate(p)
+        # both children present, promote largest item of left subtree to position p
         if self.left(p) and self.right(p):
             r = self._subtree_last_position(self.left(p))
             self._replace(p, r.element())
