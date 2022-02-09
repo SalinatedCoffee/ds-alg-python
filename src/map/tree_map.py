@@ -110,6 +110,11 @@ class tree_map(linkedbinary_tree, map): # multiple inheritance, but map only imp
     def delete(self, p):
         """Deletes the item at Position p and updates the tree accordingly."""
         self._validate(p)
+        if self.left(p) and self.right(p):
+            r = self._subtree_last_position(self.left(p))
+            self._replace(p, r.element())
+            p = r
+        self._delete(p)
 
     # magic method overrides
 
@@ -135,6 +140,8 @@ class tree_map(linkedbinary_tree, map): # multiple inheritance, but map only imp
         p = self._subtree_search(self.root(), k) if self.root() is not None else None
         if p is None or p.key() != k:
             raise KeyError('Key error: ' + repr(k))
+        else:
+            self.delete(p)
 
     def __iter__(self):
         pass
