@@ -52,11 +52,29 @@ class tree_map(linkedbinary_tree, map): # multiple inheritance, but map only imp
 
     def before(self, p):
         """Returns a Position for the item before the one at Position p."""
-        return self._subtree_last_position(self.left(p)) if self.left(p) else None
+        self._validate(p)
+        if self.left(p):
+            return self._subtree_last_position(self.left(p))
+        else:
+            current = p
+            parent = self.parent(p)
+            while parent is not None and self.left(parent) == current:
+                current = parent
+                parent = self.parent(current)
+            return current
 
     def after(self, p):
         """Returns a Position for the item after the one at Position p."""
-        return self._subtree_first_position(self.right(p)) if self.right(p) else None
+        self._validate(p)
+        if self.right(p):
+            return self._subtree_first_position(self.right(p))
+        else:
+            current = p
+            parent = self.parent(p)
+            while parent is not None and self.right(parent) == current:
+                current = parent
+                parent = self.parent(current)
+            return current
 
     def find_position(self, k):
         """Returns a Position for the item with key k."""
@@ -91,7 +109,7 @@ class tree_map(linkedbinary_tree, map): # multiple inheritance, but map only imp
 
     def delete(self, p):
         """Deletes the item at Position p and updates the tree accordingly."""
-        pass
+        self._validate(p)
 
     # magic method overrides
 
