@@ -61,7 +61,7 @@ class tree_map(linkedbinary_tree, map): # multiple inheritance, but map only imp
             while parent is not None and self.left(parent) == current:
                 current = parent
                 parent = self.parent(current)
-            return current
+            return parent
 
     def after(self, p):
         """Returns a Position for the item after the one at Position p."""
@@ -74,7 +74,7 @@ class tree_map(linkedbinary_tree, map): # multiple inheritance, but map only imp
             while parent is not None and self.right(parent) == current:
                 current = parent
                 parent = self.parent(current)
-            return current
+            return parent
 
     def find_position(self, k):
         """Returns a Position for the item with key k."""
@@ -96,11 +96,17 @@ class tree_map(linkedbinary_tree, map): # multiple inheritance, but map only imp
 
     def find_ge(self, k):
         """Returns the key-value pair with key greater than or equal to k."""
-        pass
+        res = self._subtree_search(self.root(), k) if self.root() is not None else None
+        if res is not None and res.key() < k:
+            res = self.after(res)
+        return (res.key(), res.value()) if res is not None else None
 
     def find_le(self, k):
         """Returns the key-value pair with key less than or equal to k."""
-        pass
+        res = self._subtree_search(self.root(), k) if self.root() is not None else None
+        if res is not None and res.key() > k:
+            res = self.before(res)
+        return (res.key(), res.value()) if res is not None else None
 
     def find_range(self, l, h):
         """
