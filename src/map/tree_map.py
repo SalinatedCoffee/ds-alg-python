@@ -113,7 +113,20 @@ class tree_map(linkedbinary_tree, map): # multiple inheritance, but map only imp
         Generator that iterates through all key-value pairs where the keys are in the interval
         [l, h)
         """
-        pass
+        # set range for params passed as None
+        if l is None:
+            l = self.first().key()
+        if h is None:
+            h = self.last().key()
+        # map is empty or invalid range was supplied
+        if len(self) == 0 or l >= h:
+            return
+        current = self._subtree_search(self.root(), l) if self.root() is not None else None
+        if current is not None and current.key() < l:
+            current = self.after(current)
+        while current and current.key() < h:
+            yield (current.key(), current.value())
+            current = self.after(current)
 
     def delete(self, p):
         """Deletes the item at Position p and updates the tree accordingly."""
