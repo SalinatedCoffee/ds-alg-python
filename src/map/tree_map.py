@@ -40,6 +40,44 @@ class tree_map(linkedbinary_tree, map): # multiple inheritance, but map only imp
             current = self.right(current)
         return current
 
+    def _relink(self, parent, child, make_left_child:bool):
+        """Link child node to parent."""
+        if make_left_child:
+            parent._left = child
+        else:
+            parent._right = child
+        if child is not None:
+            child._parent = parent
+
+    def _rotate(self, p):
+        """Rotate p above parent."""
+        x = p._node
+        y = p._parent
+        z = y._parent
+        if z is None:
+            self._root = x
+            x._parent = None
+        else:
+            self._relink(z, x, y == z._left)
+        if x == y._left:
+            self._relink(y, x._right, True)
+            self._relink(x, y, False)
+        else:
+            self._relink(y, x._left, False)
+            self._relink(x, y, True)
+
+    def _restructure(self, x):
+        """Perform trinode restructure of Position x with ancestors."""
+        y = self.parent(x)
+        z = self.parent(y)
+        if (x == self.right(y)) == (y == self.right(z)):
+            self._rotate(y)
+            return y
+        else:
+            self._rotate(x)
+            self._rotate(x)
+            return x
+
     # public methods; returns None if search was unsuccessful
 
     def first(self):
