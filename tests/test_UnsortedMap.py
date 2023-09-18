@@ -1,4 +1,3 @@
-from pyparsing import empty
 import pytest
 from src.map.unsorted_map import unsorted_map
 
