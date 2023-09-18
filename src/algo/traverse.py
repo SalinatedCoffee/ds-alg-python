@@ -46,3 +46,26 @@ def _preorder_helper(tree, p):
     for n in tree.children(p):
         for i in _preorder_helper(tree, n):
             yield i
+
+def floydwarshall(adj:list[list[(int,int)]]):
+    """
+    Given an adjacency list, runs the Floyd-Warshal algorithm on the graph represented by it.
+    The graph MUST NOT contain any negative cycles.
+    Returns the cost matrix of all nodes.
+    """
+    m = len(adj)
+    # initialize cost matrix
+    cost = [[float('inf')]*m for _ in range(m)]
+    for i in range(m):
+        for d, c in adj[i]:
+            cost[i][d] = c
+    for i in range(m):
+        cost[i][i] = 0
+    
+    for i in range(m):
+        for j in range(m):
+            for k in range(m):
+                if cost[j][k] > cost[j][i] + cost[i][k]:
+                    cost[j][k] = cost[j][i] + cost[i][k]
+    
+    return cost
