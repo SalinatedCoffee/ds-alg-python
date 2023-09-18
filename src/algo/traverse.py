@@ -1,5 +1,6 @@
 # TODO: Implement iterative versions of tree traversal functions
 """Collection of various tree / graph traversal algorithms."""
+from typing import List, Tuple
 import src.tree.linkedbinary_tree as linkedbinary_tree
 
 def inorder(tree:linkedbinary_tree):
@@ -47,7 +48,7 @@ def _preorder_helper(tree, p):
         for i in _preorder_helper(tree, n):
             yield i
 
-def floydwarshall(adj:list[list[(int,int)]]):
+def floydwarshall(adj:List[List[Tuple[int,int]]]):
     """
     Given an adjacency list, runs the Floyd-Warshal algorithm on the graph represented by it.
     The graph MUST NOT contain any negative cycles.
